@@ -12,6 +12,7 @@ TODO
 1. [GitHub Repository erstellen](labs/025_create_github_repository.md)
 1. [Prototyp erstellen](labs/030_create_prototype.md)
 1. [Artefakte speichern](labs/035_save_artifacts.md)
+1. [Konfiguration hinzufügen](labs/040_add_config.md)
 
 ## Zusätzliche Dokumentation
 

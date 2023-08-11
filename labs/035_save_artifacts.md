@@ -1,6 +1,6 @@
 # Artefakte speichern
 
-1. Folgende Änderungen müssen im Code durchgeführt werden:
+1. Folgende Änderungen im Code durchführen:
     ```diff
     import matplotlib.pyplot as plt
 
@@ -18,8 +18,8 @@
     +if (Path.cwd().name == 'notebooks'):
     +    %cd ..
     +
-    +def use_file(path, filename):
-    +    _path = Path(path, filename)
+    +def use_file(path):
+    +    _path = Path(path)
     +    _path.parent.mkdir(parents=True, exist_ok=True)
     +    return _path
 
@@ -27,7 +27,7 @@
     # get
     digits = datasets.load_digits()
 
-    +joblib.dump(digits, use_file("data/raw", "data_digits.joblib"))
+    +joblib.dump(digits, use_file("data/raw/data_digits.joblib"))
 
     # explore
     _, axes = plt.subplots(nrows=1, ncols=4, figsize=(10, 3))
@@ -41,13 +41,13 @@
     data = digits.images.reshape((n_samples, -1))
     prepared_dataset = pd.DataFrame(data=np.c_[data, digits.target], columns=digits.feature_names + ['target'])
 
-    +prepared_dataset.to_csv(use_file("data/processed", "digits.csv"), index=False)
+    +prepared_dataset.to_csv(use_file("data/processed/digits.csv"), index=False)
 
     # split
     train_dataset, test_dataset = train_test_split(prepared_dataset, test_size=0.5, shuffle=False)
 
-    +train_dataset.to_csv(use_file("data/train", "train.csv"), index=False)
-    +test_dataset.to_csv(use_file("data/test", "test.csv"), index=False)
+    +train_dataset.to_csv(use_file("data/train/train.csv"), index=False)
+    +test_dataset.to_csv(use_file("data/test/test.csv"), index=False)
 
     # train
     X_train = train_dataset.drop('target', axis=1).values
@@ -56,7 +56,7 @@
     model = svm.SVC(kernel="linear", C=0.025)
     model.fit(X_train, y_train)
 
-    +joblib.dump(model, use_file("models", "model.joblib"))
+    +joblib.dump(model, use_file("models/model.joblib"))
 
     # evaluate
     X_test = test_dataset.drop('target', axis=1).values
@@ -68,15 +68,16 @@
     print(f"f1 score: {f1}")
 
     +json_metrics = { 'f1': f1 }
-    +with open(use_file("reports", "metrics.json"), "w") as metrics_file:
+    +with open(use_file("reports/metrics.json"), "w") as metrics_file:
     +    json.dump(obj=json_metrics, fp=metrics_file, indent=4)
 
     cm_plot = metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted)
     cm_plot.figure_.suptitle("Confusion Matrix")
     plt.show()
 
-    +cm_plot.figure_.savefig(use_file("reports", "confusion_matrix.png"))
+    +cm_plot.figure_.savefig(use_file("reports/confusion_matrix.png"))
     ```
+1. Testen ob noch alles funktoniert
 1. Die Datei `.gitignore` anpassen:
     ```diff
     /.env
