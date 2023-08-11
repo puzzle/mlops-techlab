@@ -10,6 +10,7 @@
     /.env
     .ipynb_checkpoints/
     __pycache__/
+    /.vscode
     ```
 1. Die Datei `requirements.txt` mit folgendem Inhalt erstellen:
     ```

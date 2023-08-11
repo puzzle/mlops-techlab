@@ -83,6 +83,7 @@
     /.env
     .ipynb_checkpoints/
     __pycache__/
+    /.vscode
 
     +data/*
     +models/*

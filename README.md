@@ -13,6 +13,7 @@ TODO
 1. [Prototyp erstellen](labs/030_create_prototype.md)
 1. [Artefakte speichern](labs/035_save_artifacts.md)
 1. [Konfiguration hinzufügen](labs/040_add_config.md)
+1. [Code verschieben](labs/045_move_code.md)
 
 ## Zusätzliche Dokumentation
 
