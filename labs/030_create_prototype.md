@@ -15,6 +15,7 @@
     ```
     scikit-learn==1.3.0
     matplotlib==3.7.2
+    pandas==2.0.3
     jupyterlab==4.0.3
     ```
 1. Ein neues Terminal in VSCode öffnen.
@@ -41,11 +42,14 @@
     1. Das vorher erstellte Environment `.env` auswählen:
         ![](screenshots/vscode-select-kernel-02.png)
 1. Nun kann der folgende Code eingefügt und ausgeführt werden:
-    ```python
+    ```diff
     import matplotlib.pyplot as plt
 
     from sklearn import datasets, metrics, svm
     from sklearn.model_selection import train_test_split
+    import pandas as pd
+    import numpy as np
+
 
     # get
     digits = datasets.load_digits()
@@ -60,23 +64,29 @@
     # prepare
     n_samples = len(digits.images)
     data = digits.images.reshape((n_samples, -1))
+    prepared_dataset = pd.DataFrame(data=np.c_[data, digits.target], columns=digits.feature_names + ['target'])
 
     # split
-    X_train, X_test, y_train, y_test = train_test_split(data, digits.target, test_size=0.5, shuffle=False)
-    X_train.shape, X_test.shape
+    train_dataset, test_dataset = train_test_split(prepared_dataset, test_size=0.5, shuffle=False)
 
     # train
-    clf = svm.SVC(kernel="linear", C=0.025)
-    clf.fit(X_train, y_train)
+    X_train = train_dataset.drop('target', axis=1).values
+    y_train = train_dataset.loc[:, 'target'].values
+
+    model = svm.SVC(kernel="linear", C=0.025)
+    model.fit(X_train, y_train)
 
     # evaluate
-    predicted = clf.predict(X_test)
+    X_test = test_dataset.drop('target', axis=1).values
+    y_test = test_dataset.loc[:, 'target'].values
 
-    f1 = metrics.f1_score(y_test, predicted, average='macro')
+    predicted = model.predict(X_test)
+
+    f1 = metrics.f1_score(y_test, predicted, average="macro")
     print(f"f1 score: {f1}")
 
-    disp = metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted)
-    disp.figure_.suptitle("Confusion Matrix")
+    cm_plot = metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted)
+    cm_plot.figure_.suptitle("Confusion Matrix")
     plt.show()
     ```
 1. Die erstellten Dateien auf GitHub übertragen:
