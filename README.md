@@ -14,6 +14,7 @@ TODO
 1. [Artefakte speichern](labs/035_save_artifacts.md)
 1. [Konfiguration hinzufügen](labs/040_add_config.md)
 1. [Code verschieben](labs/045_move_code.md)
+1. [Pipeline automatisieren](labs/050_automate_pipeline.md)
 
 ## Zusätzliche Dokumentation
 
