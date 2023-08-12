@@ -11,11 +11,11 @@ Dieses kann unter dem eigenen Account wie folgt erstellt werden:
 1. Danach _Create repository_ klicken
 1. Kopieren der Repository URL:   
     ![](screenshots/github_repo_clone.png)
-1. In einem Terminal das Repository klonen und ins Verzeichnis wechseln:
+1. In einem Terminal das Repository klonen:
     ```shell
     git clone git@github.com:GITHUB_USER/digits.git
     ```
-1. Wechseln ins Verzeichnis:
+1. Ins Verzeichnis wechseln:
     ```shell
     cd digits
     ```

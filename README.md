@@ -21,6 +21,7 @@ TODO
 1. [Konfiguration hinzufügen](labs/040_add_config.md)
 1. [Code verschieben](labs/045_move_code.md)
 1. [Pipeline automatisieren](labs/050_automate_pipeline.md)
+1. [Daten und Modell versionieren](labs/060_versioning_data.md)
 
 ## Zusätzliche Dokumentation
 
