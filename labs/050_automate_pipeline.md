@@ -44,7 +44,7 @@ dvc stage add -n data_load \
     python src/data_load.py --config params.yaml
 ```
 
-Man kann nun mit `dvc repro` die Pipeline ausführen. Bei der ersten Ausführung werden die Daten geladen. Bei einer zweiten Ausführung wird keine Aktion durchgeführt, da sich nichts geändert hat.
+Man kann nun mit `dvc repro` die Pipeline ausführen. Bei der ersten Ausführung werden die Daten geladen. Bei einer zweiten Ausführung wird keine Aktion durchgeführt, da sich nichts geändert hat. Will man trotzdem die Ausführung forcieren, kann dies mit `dvc repro -f` erreicht werden.
 
 Löscht man mit `rm data/raw/data_digits.joblib` das von der Stage `data_load` erstellte Artefakt, wird `dvc status` diese Datei als gelöscht melden.
 
