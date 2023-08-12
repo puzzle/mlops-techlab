@@ -1,5 +1,9 @@
 # Ubuntu 20.04 LTS in einer VirtualBox
 
+Wer kein Linux zur Verfügung hat, kann das Lab auch mit einer VM in VirtualBox durchführen.
+
+Dazu muss in einer VM Ubuntu 20.04 LTS oder neuer installiert werden.
+
 ## Installation Guest Additions
 
 1. Abhängigkeiten im System installieren

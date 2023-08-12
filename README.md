@@ -4,6 +4,12 @@
 
 TODO
 
+## Voraussetzungen
+
+- Linux (das Lab wurde mit Ubuntu 20.04 LTS getestet)
+- GitHub Account
+    - Verbindung mit SSH (siehe [Testing your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection))
+
 ## Labs
 
 1. [Einführung in Machine Learning](labs/010_introduction_to_ml.md)
