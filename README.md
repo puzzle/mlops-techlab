@@ -24,6 +24,7 @@ TODO
 1. [Daten und Modell versionieren](labs/060_versioning_data.md)
 1. [Experimente und Metriken](labs/070_experiments.md)
 1. [GitHub Actions](labs/080_github_actions.md)
+1. [Self-hosted Runner](labs/090_self_hosted_runner.md)
 
 ## Zusätzliche Dokumentation
 
