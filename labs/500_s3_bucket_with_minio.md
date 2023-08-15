@@ -33,13 +33,13 @@
         - minio
     ```
 1. Die Container mit folgendem Befehl hochfahren:
-  ```shell
-  docker compose up -d  
-  ```
+    ```shell
+    docker compose up -d  
+    ```
 1. Mit folgendem Befehl können die Logs der Container eingesehen werden:
-  ```shell
-  docker compose logs -f
-  ```
+    ```shell
+    docker compose logs -f
+    ```
 1. Unter http://locahost:9000 kann man auf den MinIO Browser zugreifen (usr: minioadmin, pwd: minioadmin) und das Bucket einsehen.
 1. DVC Remote hinzufügen mit:
     ```shell
@@ -61,6 +61,63 @@
     dvc push
     ```
 1. Auf http://localhost:9000 sieht man im Bucket ein neues Verzeichnis `files` in welchem DVC die Dateien verwaltet.
+1. Änderungen pushen mit:
+    ```shell
+    git add .
+    git commit -m "Use local minio in docker container."
+    git push
+    ```
+
+## Self-Hosting Runner mit Zugriff auf lokales minio
+
+Aktuell hat der GitHub Action Runner oder der Self-Hosting Runner keinen Zugriff auf das lokale minio. Daher wird hier beschrieben wie dies erreicht werden kann.
+
+1. In `docker-compose.yaml` folgenden Service hinzufügen:
+    ```diff
+    ...
+    + runner:
+    +   image: iterativeai/cml:0-dvc3-base1
+    +   container_name: runner
+    +   command: cml runner --
+    +   environment:
+    +     RUNNER_IDLE_TIMEOUT: 1800
+    +     RUNNER_LABELS: cml,vm
+    +     RUNNER_REPO: $repo_url
+    +     REPO_TOKEN: $repo_token
+    +   
+    ...
+    ```
+1. In einem Terminal den Container wie folgt hochfahren (falls `repo_url` und `repo_token` noch nicht gesetzt sind, dies wie in [Self-hosted Runner](090_self_hosted_runner.md) beschrieben zuerst setzen):
+    ```shell
+    docker compose up -d
+    ```
+1. Ändern der remote url:
+    ```shell
+    dvc remote modify minio endpointurl http://minio:9000
+    ```
+1. Wenn wir lokal arbeiten, wollen wir minio über `localhost` erreichen:
+    ```shell
+    dvc remote modify --local minio endpointurl http://localhost:9000
+    ```
+1. Nun können wir auch im Runner Files vom lokalen S3 Bucket holen und die Datei `.github/workflows/cml.yaml` erweitern:
+    ```diff
+    ...
+      - name: Train model
+        run: |
+          cat requirements.txt | grep -v -e jupyter > ci_requirements.txt
+          pip install -r ci_requirements.txt
+    +     dvc pull
+          PYTHONPATH=$PWD dvc repro
+    +     dvc push
+      - name: Create CML report
+    ...
+    ```
+1. Änderungen pushen mit:
+    ```shell
+    git add .
+    git commit -m "Use self-hosted runner with local minio."
+    git push
+    ```
 
 ## Zusätzliche Dokumentation
 
