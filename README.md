@@ -26,5 +26,9 @@ TODO
 1. [GitHub Actions](labs/080_github_actions.md)
 1. [Self-hosted Runner](labs/090_self_hosted_runner.md)
 
+### Weitere Labs
+
+- [S3 Bucket mit MinIO](labs/500_s3_bucket_with_minio.md)
+
 ## Zusätzliche Dokumentation
 
