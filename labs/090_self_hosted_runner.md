@@ -20,7 +20,7 @@ Dies ist ersichtlich am Badge neben dem Repository Titel wenn man https://github
 1. Neues Terminal öffnen.
 1. `repo_url` setzen wie folgt (`GITHUB_USER` ersetzen mit eigenem GitHub Benutzer!):
     ```shell
-    export repo_url=https//github.com:GITHUB_USER/digits.git
+    export repo_url=https://github.com/GITHUB_USER/digits.git
     ```
 1. `repo_token` setzen wie folgt (`TOKEN` ersetzen mit oben generiertem Token!):
     ```shell
@@ -42,8 +42,8 @@ Dies ist ersichtlich am Badge neben dem Repository Titel wenn man https://github
     ```shell
     docker logs -f digits-runner
     ```
-1. Unter https://github.com/GITHUB_USER/digits/settings/actions/runners erscheint nach einiger Zeit der Runner als _Idle_
-iimsand
+1. Unter https://github.com/GITHUB_USER/digits/settings/actions/runners erscheint nach einiger Zeit der Runner als _Idle_.
+
 ## Repository auf eigenen Runner umstellen
 
 1. Mit `git status` prüfen ob man auf dem `main` ist. Falls nicht, auf den `main` wechseln.
@@ -57,7 +57,7 @@ iimsand
         steps:
         ...
     ```
-1. Änderungen pushen mit:iimsand
+1. Änderungen pushen mit:
     ```shell
     git add .
     git commit -m "Use self-hosted runner."
