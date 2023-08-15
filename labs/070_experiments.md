@@ -7,7 +7,7 @@
     - Man sollte aktuell 2 Experimente `workspace` und `main` sehen.
     - Mit den Pfeiltasten links/rechts kann die Tabelle hin- und hergeschoben werden.
     - Man sieht zwar die Parameter aus dem `param.yaml` und die Hashes der Dateien, aber keine Metriken wie z.B. der `f1 score`.
-1. Im `params.yaml` die Stage `evaluate` wie folgt anpassen:
+1. Im `dvc.yaml` die Stage `evaluate` wie folgt anpassen:
     ```diff
     evaluate:
       cmd: python src/evaluate.py --config params.yaml
