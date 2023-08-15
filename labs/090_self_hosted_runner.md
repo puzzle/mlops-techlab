@@ -20,7 +20,7 @@ Dies ist ersichtlich am Badge neben dem Repository Titel wenn man https://github
 1. Neues Terminal öffnen.
 1. `repo_url` setzen wie folgt (`GITHUB_USER` ersetzen mit eigenem GitHub Benutzer!):
     ```shell
-    export repo_url=https//github.com:GITHUB_USER/digits.git
+    export repo_url=https://github.com/GITHUB_USER/digits.git
     ```
 1. `repo_token` setzen wie folgt (`TOKEN` ersetzen mit oben generiertem Token!):
     ```shell
