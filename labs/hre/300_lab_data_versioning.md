@@ -1,43 +1,11 @@
-# Daten und Modell mit DVC versionieren
-
-## DVC verfügbar machen
-
-1. Falls dvc noch nicht in `requirements.txt` eingetragen ist, diese hinzufügen:
-    ```
-    scikit-learn==1.3.0
-    matplotlib==3.7.2
-    pandas==2.0.3
-    +dvc=3.15.0
-    jupyterlab==4.0.3
-    ```
-1. Die neue Abhängigkeit installieren mit folgendem Befehl 
-(**ACHTUNG**: falls man sich nicht schon im virtuellen Environment befindet, unbedingt zuerst mit `source .env/bin/activate` aktivieren!):
-    ```shell
-    pip install -r requirements.txt
-    ```
-
-## DVC initialisieren
-
-1. Das Repository für DVC initialiseren mit:
-    ```shell
-    dvc init
-    ```
-1. **Optional** Analytics ausschalten (siehe https://dvc.org/doc/user-guide/analytics).
-    ```shell
-    dvc config core.analytics false
-    ```
-1. DVC hat ein Verzeichnis `.dvc` und eine Datei `.dvcignore` erstellt. Diese müssen in Git eingecheckt werden.
-    ```shell
-    git add .
-    git commit -m "Init DVC repo."
-    git push
-    ```
-
+# Daten und Modell versionieren
 
 1. Zum Experimentieren eine lokale DVC Ablage hinzufügen:
     ```shell
     dvc remote add -d local /tmp/dvc/digits
     ```
+    In der Realität würde diese Ablage z.B. auf einem S3-Bucket auf AWS liegen, wo wir alle Versionen unserer Daten speichern. Die Konfiguration wie auch weitere mögliche Ablagen ist der Dokumentation zu entnehmen: https://dvc.org/doc/command-reference/remote#remote
+
 1. Es wurde eine Änderung an `.dvc/config` vorgenommen, diese Änderung muss in Git hinzugefügt werden:
     ```shell
     git add .dvc/config
