@@ -1,8 +1,19 @@
 # Systemvoraussetzungen
 
-Das Lab kann vollständig mit Github Codespaces druchgeführt werden. 
+Das Lab kann vollständig mit GitHub-Codespaces druchgeführt werden. Dafür bauchst du einen GitHub-Account.
+
+Für den letzten optionalen Schritt brauchst du zusätzlich Docker. Alle nötigen Informationen sind in der Anleitung dieses Schritts festgehalten. 
 
 Alternativ kann eine lokale Python- und GIT-Installation verwendet werden. Eine detailierte Instellationsanleitung befindet sich im Kapitel [Lokale Umgebung aufsetzen](#lokale-umgebung-aufsetzen)
+
+### GitHub-Repository
+Dieses Repository ist schreibgeschützt. Damit du selber anpacken kannst, musst du eine Fork erstellen.
+
+
+### GitHub-Codespace
+Aus deinem geforkten Repository kannst du nun GitHub-Codespaces öffnen.
+
+### Erweiterungen für Visual Stuido Code laden
 
 Um optimal arbeiten zu können, installieren wir ein paar VSC-Erweiterungen.
 
@@ -11,6 +22,8 @@ code --install-extension ms-python.python
 code --install-extension ms-toolsai.jupyter
 code --install-extension Iterative.vscode-dvc-pack
 ```
+
+### Virtuelle Umgebung für Python erstellen
 
 Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, erstellen wir eine virutelle Umgebung. So können wir in unterschiedlichen Python-Projekten verschiedenen Versiobnen der Python-Erweiterungen nutzen. Siehe auch: https://docs.python.org/3/library/venv.html
 
