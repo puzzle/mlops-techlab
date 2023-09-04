@@ -2,9 +2,14 @@
 .ipynb_checkpoints/
 __pycache__/
 /.vscode
+/.idea
 
 data/*
 models/*
 reports/*
 
+build/*
+
 !reports/metrics.json
+/docker
+/predict.html

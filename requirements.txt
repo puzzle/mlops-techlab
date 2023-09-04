@@ -5,3 +5,7 @@ pandas==2.0.3
 jupyterlab==4.0.3
 # DVC verfügbar machen
 dvc==3.15.0
+# MLEM
+mlem==0.4.14
+fastapi==0.103.0
+uvicorn==0.23.2

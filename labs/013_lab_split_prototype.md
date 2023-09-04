@@ -1,4 +1,4 @@
-# Code verschieben
+# Separate Skripte für einzelne Schritte erstellen
 
 Damit wir einzelne Schritte unabhängig ausführen können, teilen wir Wir die Funktionalität im Jupyter-Notebook in einzelne Python-Dateien auf. Dafür müssen wir am Ende des Skripts in eine Datei schreiben, die im Folgeschritt wieder gelesen werden kann. `joblib.dump()` bietet die Möglichkeit, ganze Python-Objekte effizient abzuspeichern und einzulesen. Alternativ kann ein Dataframe auch in eine csv-Datei abgespeichert werden.
 

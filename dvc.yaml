@@ -40,6 +40,7 @@ stages:
     - train
     outs:
     - models/model.joblib
+    - models/model.joblib.mlem
   evaluate:
     cmd: python src/evaluate.py --config params.yaml
     deps:

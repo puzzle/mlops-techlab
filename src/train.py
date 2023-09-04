@@ -5,6 +5,7 @@ from typing import Text
 import joblib
 from pathlib import Path
 import pandas as pd
+from mlem.api import save
 
 from src.utils import get_logger, use_file
 
@@ -32,6 +33,7 @@ def train_model(config_path: Text) -> any:
 
     logger.info('Save model')
     joblib.dump(model, use_file(config["train"]["model_path"]))
+    save(model, use_file(config["train"]["model_path"]), sample_data=X_train)
 
     return model
 

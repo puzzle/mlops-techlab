@@ -1,10 +1,10 @@
-# Prototyp
+# Prototyp ML-Experiment
 
-Wir haben ein Jupyter-Notebook mit dem Prototypen erstellt [notebook/prototyp.ipynb](../notebooks/prototype.ipynb)
+Wir haben ein Jupyter-Notebook mit dem Prototypen erstellt [notebook/prototyp.ipynb](notebooks/prototype.ipynb)
 
 Damit du den Code im Jupyter-Notebook ausführen kannst, musst du die Python-Umgebung konfigurieren. Danach kannst du entweder mit `Run All` alle Codeabschnitte oder mit dem Pfeil links neben dem Codeabschnitt den einzelnen Abschnitt ausführen.  
 
-1. Die Datei [notebook/prototyp.ipynb](../notebooks/prototype.ipynb) öffnen.
+1. Die Datei [notebook/prototyp.ipynb](notebooks/prototype.ipynb) öffnen.
 1. Die erstellte Python-Umgebung wie folgt konfigurieren:
     1. Oben rechts _Select Kernel_ wählen.   
         ![](../screenshots/vscode-select-kernel-00.png)
