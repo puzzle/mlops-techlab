@@ -3,13 +3,13 @@
 Damit wir einzelne Schritte unabhängig ausführen können, teilen wir Wir die Funktionalität im Jupyter-Notebook in einzelne Python-Dateien auf. Dafür müssen wir am Ende des Skripts in eine Datei schreiben, die im Folgeschritt wieder gelesen werden kann. `joblib.dump()` bietet die Möglichkeit, ganze Python-Objekte effizient abzuspeichern und einzulesen. Alternativ kann ein Dataframe auch in eine csv-Datei abgespeichert werden.
 
 Wir erstellen nun folgende Dateien, oder passen sie an:
-* [Allgemein:](#allgemein) [src/utils.py]()
-* [Konfiguration:](#konfiguration) [params.yaml]()
-* [Daten laden:](#daten-laden) [src/data_load.py]()
-* [Daten vorbereiten:](#daten-vorbereiten) [src/data_prepare.py]()
-* [Daten splitten:](#daten-splitten) [src/data_split.py]()
-* [Training:](#training) [src/train.py]()
-* [Evaluation:](#evaluation) [src/evaluate.py]()
+* [Allgemein:](#allgemein) [src/utils.py](../src/utils.py)
+* [Konfiguration:](#konfiguration) [params.yaml](../params.yaml)
+* [Daten laden:](#daten-laden) [src/data_load.py](../src/data_load.py)
+* [Daten vorbereiten:](#daten-vorbereiten) [src/data_prepare.py](../src/data_prepare.py)
+* [Daten splitten:](#daten-splitten) [src/data_split.py](../src/data_split.py)
+* [Training:](#training) [src/train.py](../src/train.py)
+* [Evaluation:](#evaluation) [src/evaluate.py](../src/evaluate.py)
 
 ## Allgemein
 1. Die Datei `src/utils.py` mit folgendem Inhalt erstellen:

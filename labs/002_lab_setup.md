@@ -2,16 +2,19 @@
 
 Das Lab kann vollständig mit GitHub-Codespaces druchgeführt werden. Dafür bauchst du einen GitHub-Account.
 
-Für den letzten optionalen Schritt brauchst du zusätzlich Docker. Alle nötigen Informationen sind in der Anleitung dieses Schritts festgehalten. 
+Für die letzten optionalen Schritte brauchst du zusätzlich Docker. Alle nötigen Informationen sind in der Anleitung dieses Schritts enthalten. 
 
-Alternativ kann eine lokale Python- und GIT-Installation verwendet werden. Eine detailierte Instellationsanleitung befindet sich im Kapitel [Lokale Umgebung aufsetzen](#lokale-umgebung-aufsetzen)
+Alternativ kann eine lokale Python- und GIT-Installation verwendet werden. Eine detailierte Instellationsanleitung befindet sich im Kapitel [Lokale Umgebung aufsetzen](#lokale-umgebung-aufsetzen) weiter unten.
 
 ### GitHub-Repository
 Dieses Repository ist schreibgeschützt. Damit du selber anpacken kannst, musst du eine Fork erstellen.
 
+https://docs.github.com/en/get-started/quickstart/fork-a-repo
 
 ### GitHub-Codespace
 Aus deinem geforkten Repository kannst du nun GitHub-Codespaces öffnen.
+
+https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository
 
 ### Erweiterungen für Visual Stuido Code laden
 
@@ -31,20 +34,15 @@ Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, er
 python3 -m venv .env
 echo "export PYTHONPATH=$PWD" >> .env/bin/activate
 
+# muss jedesmal nach dem Öffnen des Terminals ausgeführt werden
+# danach erscheint (.env) am Anfang der Zeile
 source .env/bin/activate
 
 pip install --upgrade pip setuptools
 pip install -r requirements.txt
 ```
 
-Die VSC-Erweiterungen und das Aufsetzen der virtellen Umgebung ist im `init.sh` zusammengefasst.
-
-```shell
-./init.sh
-```
-
-Da dieses Repository schreibgeschützt ist, müssen wir uns einen Fork davon erstellen.
-
+Wenn du GitHub-Codespaces verwendest, ist eine virtuelle Umgebung nicht zwingend nötig. Das reuqirements.txt File wird beim Start des Codespaces automatisch geladen. Für die lokale Entwicklung ist die virtuelle Umgebung aber wärmstens zu empfehlen!
 
 ## Lokale Umgebung aufsetzen
 Wir empfehlen Visual Studio Code als Entwicklungsubebung. Untenstehende Anleitung beschreibt die Schritte, um die Voraussetzungen in einer Linux-Umbebung bereitzustellen

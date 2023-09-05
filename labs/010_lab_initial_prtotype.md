@@ -7,10 +7,16 @@ Damit du den Code im Jupyter-Notebook ausführen kannst, musst du die Python-Umg
 1. Die Datei [notebook/prototyp.ipynb](notebooks/prototype.ipynb) öffnen.
 1. Die erstellte Python-Umgebung wie folgt konfigurieren:
     1. Oben rechts _Select Kernel_ wählen.   
-        ![](../screenshots/vscode-select-kernel-00.png)
+        ![](./screenshots/vscode-select-kernel-00.png)
     1. Im Menü _Python Environments..._ klicken:   
-        ![](../screenshots/vscode-select-kernel-01.png)
+        ![](./screenshots/vscode-select-kernel-01.png)
     1. Das vorher erstellte Environment `.env` auswählen:
-        ![](../screenshots/vscode-select-kernel-02.png)
+        ![](./screenshots/vscode-select-kernel-02.png)
 1. Codeabschnitte ausführen
-    TODO
+    * Alle gemeisam ausführen:  
+        ![](./screenshots/jupyter-run-all-blocks.png)
+    * Einzelner Abschnitt ausführen
+        
+        Logischerweise müssen die Abschnitte in der gegebenen Reihenfolge ausgeführt werden, da sonst die Abhängigkeiten nicht gegeben sind.
+        
+        ![](./screenshots/jupyter-run-block.png) 
