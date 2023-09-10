@@ -16,7 +16,7 @@
    1. [Separate Skripte für einzelne Schritte erstellen](labs/013_lab_split_prototype.md)
 2. [Pipeline zusammenstellen](labs/020_lab_init_pipeline.md)
 3. [Daten und Modell versionieren](labs/030_lab_data_versioning.md)
-4. [Experimente und Metriken](labs/040_lab_metrics.md)
+4. [Metriken und Experimente](labs/040_lab_metrics.md)
 5. [GitHub Action](labs/050_github_action.md)
 
 ### Weitere Labs
