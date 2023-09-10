@@ -1,4 +1,4 @@
-# GitHub Action
+# GitHub Actions
 
 ## Konfiguration Repository
 
