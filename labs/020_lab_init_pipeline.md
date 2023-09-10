@@ -1,19 +1,19 @@
 # Pipeline zusammenstellen
 
-## Erweiterung DVC installieren
+## DVC installieren
 
-1. Falls dvc noch nicht in `requirements.txt` eingetragen ist, diese hinzufügen:
-    ```
+1. Falls dvc noch nicht im `requirements.txt` eingetragen ist, diese hinzufügen:
+    ```diff
     scikit-learn==1.3.0
     matplotlib==3.7.2
     pandas==2.0.3
-    +dvc=3.15.0
+    +dvc==3.15.0
     jupyterlab==4.0.3
     ```
 1. Die neue Abhängigkeit installieren mit folgendem Befehl 
 (**ACHTUNG**: falls man sich nicht schon im virtuellen Environment befindet, unbedingt zuerst mit `source .env/bin/activate` aktivieren!):
     ```shell
-    pip install -r requiremets.txt
+    pip install -r requirements.txt
     ``````
 
 ## DVC initialisieren
@@ -116,6 +116,20 @@ dvc stage add -n evaluate \
     -o reports/confusion_matrix.png \
     -p base,data,train,reports \
     python src/evaluate.py --config params.yaml
+```
+
+## Komplette Pipeline ausführen
+
+Ausführen von:
+
+```shell
+dvc repro
+```
+
+Oder die komplette Pipeline grafisch anzeigen lassen:
+
+```shell
+dvc dag
 ```
 
 ## Änderungen auf GitHub übertragen
