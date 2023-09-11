@@ -51,7 +51,91 @@
 
 ## Experimente
 
-$\colorbox{yellow}{{\color{gray}{TODO}}}$ _Aufzeigen wie mit `dvc exp` Experimente gestartet werden können und mit Hands-on ergänzen._
+Wir können nun ein paar Experimente mit anderen Parametern durchführen und vergleichen.
+
+### Sigmoid Kernel
+
+```shell
+dvc exp run -n kernel-sigmoid --set-param train.svc_params.kernel=sigmoid
+
+dvc exp show
+```
+
+Wir sehen nun ein Experiment, dass von unserem Branch aus gestartet wurde und vermutlich einen tieferen `f1 score` aufweist.
+
+### Sigmoid Kernel mit anderer `test_size`
+
+```shell
+dvc exp run -n kernel-sigmoid -S train.svc_params.kernel=sigmoid -S data.test_size=0.2
+
+dvc exp show
+```
+
+Auch dieses Experiment wird aufgelistet, doch der `f1 score` ist nun sehr tief. Das Modell scheint nicht sehr gut zu funktionieren.
+
+### Verschiedene Werte ausprobieren
+
+Wir können auch mehrere Experimente mit verschiedenen Kombinationen von Parametern ausführen.
+
+Dazu erstellen wir zuerst unsere Experimente:
+
+```shell
+dvc exp run --queue \
+    -S train.svc_params.kernel='linear,poly' \
+    -S 'train.svc_params.C=range(0.01, 0.1, 0.05)'
+
+dvc exp show
+```
+
+Wir sehen nun alle Experimente aufgelistet in einem State `Queued`. Doch durch die ganzen Spalten, sehen wir nicht auf den ersten Blick, welches Experiment welche Parameter benutzt.
+
+Eine Möglichkeit, eine bessere Übersicht zu gewinnen, ist `dvc exp show` wie folgt aufzurufen:
+
+```shell
+dvc exp show --only-changed
+```
+
+Die Tabelle könnte noch weiter angepasst werden. Einige Beispiele sind unter https://dvc.org/doc/command-reference/exp/show#examples zu finden.
+
+Nun können wir die Experimente starten mit
+
+```shell
+dvc queue start
+```
+
+Es dauert nun einige Zeit, bis alle Experimente ausgeführt wurden. Den Status der Queue können wir mit folgendem Befehl überprüfen:
+
+```shell
+dvc queue status
+```
+
+### Experiment weiterverfolgen
+
+Haben wir in unseren Experimenten einen vielversprechenden Kandidaten gefunden den wir weiterverfolgen wollen. Können wir hiervon einen Branch mit folgendem Befehl erstellen.
+
+```shell
+dvc exp branch minim-rede
+
+# show branches
+git branch
+```
+
+DVC hat uns einen Branch erstellt auf welchen wir wechseln, alles in Git und DVC hinzufügen und pushen könnten. Aktuell wechseln wir aber den Branch nicht und bleiben auf dem aktuellen.
+
+### Experimente bereinigen
+
+Beim Experimentieren sammeln sich einige Experimente an. Diese können mit folgendem Befehl bereinigt werden:
+
+```shell
+dvc exp remove --all
+dvc exp clean
+```
+
+Auch Änderungen im Git-Workspace sollten bereinigt werden damit dieser wieder sauber ist.
+
+```shell
+git checkout .
+```
 
 ## Zusätzliche Dokumentation
 
