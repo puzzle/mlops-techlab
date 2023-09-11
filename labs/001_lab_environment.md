@@ -2,37 +2,39 @@
 
 Das Lab kann vollständig mit GitHub-Codespaces druchgeführt werden. Dafür bauchst du einen GitHub-Account.
 
-Alternativ kann eine lokale Python- und Git-Installation verwendet werden. Eine detaillierte Installationsanleitung befindet sich im Kapitel [Lokale Umgebung aufsetzen](#lokale-umgebung-aufsetzen) weiter unten.
+**Wir empfehlen die Durchführung des Labs unbedingt mit GitHub Codespaces.** Dies aus folgenden Gründen:
+- die Zeit für das Lab ist sehr kurz
+- die Labs wurden mit GitHub Codespaces getestet
+- Vermeidung von Installationsproblemen auf dem lokalen System (z.B. falsche Python Version, System Libraries fehlen, etc.)
+
+Wer will, kann die Labs aber auch lokal durchführen. Eine detaillierte Installationsanleitung befindet sich im Kapitel [Lokale Umgebung aufsetzen](#lokale-umgebung-aufsetzen) weiter unten.
 
 ## GitHub-Repository
 
-$\colorbox{yellow}{{\color{gray}{TODO}}}$ _Template Repository mit Lösungen erstellen. Hier erklären wie man sein eigenes Repository vom Template erstellt._
+Es existiert ein Template Repository unter https://github.com/iimsand/mlops-techlab-digits-template. Dieses Repository dient als Startpunkt für dein eigenes Repository und enthält auch Lösungen zu jedem Lab, falls du einmal nicht weiterkommen solltest, kannst du die Dateien vom entsprechenden Branch kopieren. Das Repository ist schreibgeschützt und du musst dein eigenes Repository erstellen.
 
-Dieses Repository ist schreibgeschützt. Damit du selber anpacken kannst, musst du einen Fork erstellen.
+Dein Repository kannst du wie folgt erstellen:
 
-https://docs.github.com/en/get-started/quickstart/fork-a-repo
+1. "Use this template" aufklappen und "Create new repository" klicken:   
+![GitHub create repo from template](screenshots/github_repo_create_from_template.png)
+1. Repository name "digits" wählen und auf "Private" setzen:   
+![GitHub create repo from template - info](screenshots/github_repo_create_from_template_info.png)
 
 ## GitHub-Codespace
 
-Aus deinem geforkten Repository kannst du nun GitHub-Codespaces öffnen.
+Aus deinem neu erstellten Repository kannst du nun GitHub-Codespace öffnen.
 
-https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository
+1. Kontrolliere ob du dich auf deinem eigenen Repository befindest: https://github.com/<GIT_USER>/digits
+1. Unter "Code -> Codespaces" kannst du nun mit "Create codespace on main" die Umgebung starten:   
+![GitHub start codespace](screenshots/github_repo_start_codespace.png)
 
-## Erweiterungen für Visual Studio Code laden
-
-Um optimal arbeiten zu können, installieren wir ein paar VSC-Erweiterungen.
-
-```shell
-code --install-extension ms-python.python
-code --install-extension ms-toolsai.jupyter
-code --install-extension Iterative.vscode-dvc-pack
-```
+Weiter Informationen zu codespace: https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository
 
 ## Virtuelle Umgebung für Python erstellen
 
-Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, erstellen wir eine virutelle Umgebung. So können wir in unterschiedlichen Python-Projekten verschiedenen Versionen der Python-Erweiterungen nutzen. Siehe auch: https://docs.python.org/3/library/venv.html
+Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, erstellen wir eine virtuelle Umgebung. So können wir in unterschiedlichen Python-Projekten verschiedene Versionen der Python-Erweiterungen nutzen. Siehe auch: https://docs.python.org/3/library/venv.html
 
-Wenn du GitHub-Codespaces verwendest, ist eine virtuelle Umgebung nicht zwingend nötig. Das `requirements.txt` File wird beim Start des Codespaces automatisch geladen. Für die lokale Entwicklung ist die virtuelle Umgebung aber wärmstens zu empfehlen!
+**Wenn du GitHub-Codespaces verwendest, ist eine virtuelle Umgebung nicht zwingend nötig. Das `requirements.txt` File wird beim Start des Codespaces automatisch geladen.** Für die lokale Entwicklung ist die virtuelle Umgebung aber wärmstens zu empfehlen!
 
 ```shell
 python3 -m venv .env
@@ -86,7 +88,15 @@ sudo apt update
 sudo apt install code
 ```
 
-Nun solltest du noch die Erweiterungen wie unter [Erweiterungen für Visual Studio Code laden](#erweiterungen-für-visual-studio-code-laden) beschrieben, installieren.
+#### Visual Studio Code - Erweiterungen
+
+Um optimal arbeiten zu können, installieren wir noch ein paar Erweiterungen.
+
+```shell
+code --install-extension ms-python.python
+code --install-extension ms-toolsai.jupyter
+code --install-extension Iterative.vscode-dvc-pack
+```
 
 ### Docker
 
