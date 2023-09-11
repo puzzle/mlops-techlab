@@ -19,7 +19,12 @@ Im den folgenden Screenshots ist zu sehen, welche Optionen gemeint sind:
 
 ```yaml
 name: CML & DVC
-on: [push]
+on:
+  push:
+    paths:
+      - "src/**"
+      - "params.yaml"
+      - "dvc.*"
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
@@ -48,7 +53,7 @@ jobs:
 
           echo "## Plots" >> report.md
           echo "### Class confusions" >> report.md
-          echo '![](./reports/confusion_matrix.png "Confusion Matrix")' >> report.md          
+          echo '![](./reports/confusion_matrix.png "Confusion Matrix")' >> report.md
 
           cml comment create report.md
 ```
@@ -59,58 +64,69 @@ jobs:
     git commit -m "Add GitHub action execution."
     git push
     ```
+
+## Experiment mit Kernel `poly`
+
+1. In der Datei `params.yaml` den Parameter `kernel` auf `poly` ändern und die Datei speichern.
+1. Änderungen pushen mit:
+    ```shell
+    git add .
+    git commit -m "Experiment with kernel poly."
+    git push
+    ```
 1. Unter https://github.com/GITHUB_USER/digits/actions wird nun ein Workflow ausgeführt.
 1. Ein Link zum Report wird in den Logs angezeigt:   
     ![](screenshots/github-actions-cml-report-link.png)
 1. Mit einem Klick auf den Link gelangt man auf den Commit. Ganz unten ist ein Kommentar mit dem Report zu sehen.
 
-## Experiment mit Kernel `poly`
+## Pull Request
+
+Oben haben wir gesehen, dass ein Commit mit einem Report erstellt wird. Es ist manchmal schwierig, diese Reports zu finden. Schöner wäre, wenn direkt ein Pull Request mit dem Report erstellt wird. Diesen könnte man dann im Team reviewen und wenn z.B. der `f1 score` besser ist, mergen.
+
+Dazu ersetzen wir im `.github/workflows/cml.yaml` die letzte Zeile mit zwei anderen:
+
+```diff
+-         cml comment create report.md
++         cml pr create .
++         cml comment update report.md
+```
+
+Und committen die Änderungen auf unser Repository:
+
+```shell
+git add .
+git commit -m "Create pr"
+git push
+```
+
+Nun führen wir nochmal ein Experiment durch:
 
 1. Einen neuen Branch erstellen mit:
     ```shell
-    git checkout -b exp-kernel-poly
+    git checkout -b exp-kernel-experiments
     ```
-1. In der Datei `params.yaml` den Parameter `kernel` auf `poly` ändern und die Datei speichern.
-1. Pipeline ausführen mit:
-    ```shell
-    dvc repro
-    ```
-1. Änderungen pushen mit:
-    ```shell
-    git add .
-    git commit -m "Experiment with kernel poly."
-    git push --set-upstream origin exp-kernel-poly
-    dvc push
-    ```
-1. Unter https://github.com/GITHUB_USER/digits/actions wird wieder ein Workflow ausgeführt.
-1. Ein Link zum Report wieder in den Logs angezeigt. Mit einem Klick auf den Link gelangt man auf den Commit. Ganz unten ist ein Kommentar mit dem Report für diesen Branch zu sehen. Es ist ersichtlich, dass der `f1 score` tiefer als derjenige auf dem `main` Branch ist.
-1. Wieder auf den `main` zurückwechseln:
-    ```shell
-    git checkout main
-    dvc pull
-    ```
-
-## Experiment mit Kernel `sigmoid`
-
-1. Einen neuen Branch erstellen mit:
-    ```shell
-    git checkout -b exp-kernel-sigmoid
-    ```
-1. Experiment ausführen mit:
-    ```shell
-    dvc exp run -n kernel-sigmoid \
-        --set-param train.svc_params.kernel=sigmoid
-    ```
+1. In der Datei `params.yaml` den Parameter `kernel` auf `sigmoid` ändern und die Datei speichern.
 1. Änderungen pushen mit:
     ```shell
     git add .
     git commit -m "Experiment with kernel sigmoid."
-    git push --set-upstream origin exp-kernel-sigmoid
-    dvc push
+    git push --set-upstream origin exp-kernel-experiments
     ```
 1. Unter https://github.com/GITHUB_USER/digits/actions wird wieder ein Workflow ausgeführt.
-1. Ein Link zum Report wieder in den Logs angezeigt. Mit einem Klick auf den Link gelangt man auf den Commit. Ganz unten ist ein Kommentar mit dem Report für diesen Branch zu sehen. Es ist ersichtlich, dass der `f1 score` tiefer als derjenige auf dem `main` Branch ist.
-1. Wieder auf den `main` zurückwechseln:
+1. Ein Link zum Report wieder in den Logs angezeigt. Doch diesmal befindet sich der Report direkt in einem Pull-Request. Mit einem Klick auf den Link gelangt man auf den Pull-Request mit dem Report.
+1. Wir sehen, dass der `f1 score` im Vergleich zum `main` sehr viel schlechter ist. Das Team würde dieses Modell sicherlich nicht integrieren wollen.
+1. In der Datei `params.yaml` den Parameter `kernel` auf `linear` ändern und die Datei speichern.
+1. Änderungen pushen mit:
+    ```shell
+    git add .
+    git commit -m "Experiment with kernel linear."
+    git push
+    ```
+1. Wieder wird ein Worklfow unter https://github.com/GITHUB_USER/digits/actions ausgeführt.
+1. Mit dem Link in den Logs gelangt man wieder zum Pull Request wenn der Workflow ausgeführt wurde.
+1. Je nachdem ob der `f1 score` besser ist, können wir den Pull Request akzeptieren und auf den Branch `exp-kernel-experiments` mergen.
+1. Wir könnten nun weitere Experimente starten lassen und wenn wir ein gutes Modell gefunden haben, könnte der Branch `exp-kernel-experiments` in den `main` reintegriert werden. Wer will, kann dies tun und einen Pull Request für `exp-kernel-experiments` auf `main` erstellen und mergen.
+1. Lokal wechseln wir wieder auf den `main` zurückwechseln:
     ```shell
     git checkout main
     dvc pull
