@@ -30,23 +30,20 @@ Aus deinem neu erstellten Repository kannst du nun GitHub-Codespace öffnen.
 
 Weiter Informationen zu codespace: https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository
 
-## Virtuelle Umgebung für Python erstellen
+### Python konfigurieren
 
-Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, erstellen wir eine virtuelle Umgebung. So können wir in unterschiedlichen Python-Projekten verschiedene Versionen der Python-Erweiterungen nutzen. Siehe auch: https://docs.python.org/3/library/venv.html
+Bei einer lokalen Installation sollten wir eine virtuelle Python Umgebung nutzen, doch wenn wir mit GiHub-Codespace arbeiten, ist dies nicht nötig.
 
-**Wenn du GitHub-Codespaces verwendest, ist eine virtuelle Umgebung nicht zwingend nötig. Das `requirements.txt` File wird beim Start des Codespaces automatisch geladen.** Für die lokale Entwicklung ist die virtuelle Umgebung aber wärmstens zu empfehlen!
+Doch müssen in GitHub-Codespace trotzdem noch ein paar Konfigurationen für Python vorgenommen werden. Alle Abhängigkeiten aus dem `requirements.txt` werden zwar automatisch installiert, doch wurden noch nicht alle Pfade korrekt gesetzt.
+
+Dazu im Terminal die folgenden Befehle ausführen:
 
 ```shell
-python3 -m venv .env
-echo "export PYTHONPATH=$PWD" >> .env/bin/activate
-
-# muss jedesmal nach dem Öffnen des Terminals ausgeführt werden
-# danach erscheint (.env) am Anfang der Zeile
-source .env/bin/activate
-
-pip install --upgrade pip setuptools
-pip install -r requirements.txt
+echo "export PATH=`python -m site --user-site`/bin:\$PATH" >> ~/.bashrc
+echo "export PYTHONPATH=$CODESPACE_VSCODE_FOLDER" >> ~/.bashrc
 ```
+
+Damit die Konfiguration aktiv wird, muss ein neues Terminal geöffnet werden.
 
 ## Lokale Umgebung aufsetzen
 
@@ -67,7 +64,23 @@ sudo apt-get update
 sudo apt-get install python3 python3-pip python3.8-venv
 ```
 
-Nun kannst du die virtuelle Pyhon Umgebung wie unter [Virtuelle Umgebung für Python erstellen](#virtuelle-umgebung-für-python-erstellen) beschrieben, erstellen.
+### Virtuelle Umgebung für Python erstellen
+
+Damit wir sicher die richtige Version der Python-Erweiterungen geladen haben, erstellen wir eine virtuelle Umgebung. So können wir in unterschiedlichen Python-Projekten verschiedene Versionen der Python-Erweiterungen nutzen. Siehe auch: https://docs.python.org/3/library/venv.html
+
+**Für die lokale Entwicklung ist die virtuelle Umgebung wärmstens zu empfehlen!**
+
+```shell
+python3 -m venv .env
+echo "export PYTHONPATH=$PWD" >> .env/bin/activate
+
+# muss jedesmal nach dem Öffnen des Terminals ausgeführt werden
+# danach erscheint (.env) am Anfang der Zeile
+source .env/bin/activate
+
+pip install --upgrade pip setuptools
+pip install -r requirements.txt
+```
 
 ### Visual Studio Code
 
