@@ -17,7 +17,7 @@
 2. [Pipeline zusammenstellen](labs/020_lab_init_pipeline.md)
 3. [Daten und Modell versionieren](labs/030_lab_data_versioning.md)
 4. [Metriken und Experimente](labs/040_lab_metrics.md)
-5. [GitHub Actions](labs/050_github_actions.md)
+5. [GitHub Actions](labs/050_lab_github_actions.md)
 
 ### Weitere Labs
 
