@@ -1,8 +1,8 @@
 # Prototyp ML-Experiment
 
-Wir haben ein Jupyter-Notebook mit dem Prototypen [notebooks/prototyp.ipynb](notebooks/prototype.ipynb) erstellt.
+Wir haben ein Jupyter-Notebook mit dem Prototypen erstellt. Du solltest dieses Notebook in deinem Repository unter `notebooks/prototype.ipynb` finden.
 
-Damit du den Code im Jupyter-Notebook ausführen kannst, musst du die Python-Umgebung konfigurieren. Danach kannst du entweder mit `Run All` alle Codeabschnitte oder mit dem Pfeil links neben dem Codeabschnitt den einzelnen Abschnitt ausführen.  
+Damit du das Notebook in VSCode ausführen kannst, musst du die Python-Umgebung konfigurieren. Danach kannst du entweder mit `Run All` alle Codeabschnitte oder mit dem Pfeil links neben dem Codeabschnitt den einzelnen Abschnitt ausführen.  
 
 1. Die Datei [notebooks/prototyp.ipynb](notebooks/prototype.ipynb) öffnen.
 1. Die erstellte Python-Umgebung wie folgt konfigurieren:
@@ -10,7 +10,7 @@ Damit du den Code im Jupyter-Notebook ausführen kannst, musst du die Python-Umg
         ![](./screenshots/vscode-select-kernel-00.png)
     1. Im Menü _Python Environments..._ klicken:   
         ![](./screenshots/vscode-select-kernel-01.png)
-    1. Das vorher erstellte Environment `.env` auswählen:
+    1. Das vorher erstellte Environment `.env` auswählen (Wenn du kein virtuelles Environment erstellt hast weil du GitHub Codespace nutzt, dann wähle einfach das vorhandene Python 3.x.x aus):
         ![](./screenshots/vscode-select-kernel-02.png)
 1. Codeabschnitte ausführen
     * Alle gemeinsam ausführen:  
