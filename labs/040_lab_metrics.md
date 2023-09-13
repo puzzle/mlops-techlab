@@ -66,7 +66,7 @@ Wir sehen nun ein Experiment, dass von unserem Branch aus gestartet wurde und ve
 ### Sigmoid Kernel mit anderer `test_size`
 
 ```shell
-dvc exp run -n kernel-sigmoid -S train.svc_params.kernel=sigmoid -S data.test_size=0.2
+dvc exp run -n kernel-sigmoid-1 -S train.svc_params.kernel=sigmoid -S data.test_size=0.2
 
 dvc exp show
 ```
