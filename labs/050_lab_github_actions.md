@@ -50,6 +50,8 @@ jobs:
 
           echo "### Diff" >> report.md
           dvc metrics diff main --md >> report.md
+          echo "#### Params" >> report.md
+          dvc params diff main --md >> report.md
 
           echo "## Plots" >> report.md
           echo "### Class confusions" >> report.md
@@ -83,15 +85,35 @@ jobs:
 
 Oben haben wir gesehen, dass ein Commit mit einem Report erstellt wird. Es ist manchmal schwierig, diese Reports zu finden. Schöner wäre, wenn direkt ein Pull Request mit dem Report erstellt wird. Diesen könnte man dann im Team reviewen und wenn z.B. der `f1 score` besser ist, mergen.
 
-Dazu ersetzen wir im `.github/workflows/cml.yaml` die letzte Zeile mit zwei anderen:
+Dazu machen wir im `.github/workflows/cml.yaml` folgende Änderungen:
 
 ```diff
 -         cml comment create report.md
 +         cml pr create .
 +         cml comment update report.md
+
+        run: |
++         cml pr --skip-ci .
+
+          echo "## Metrics" >> report.md
+
+          git fetch --prune
+          dvc metrics show --md >> report.md
+
+          echo "### Diff" >> report.md
+          dvc metrics diff main --md >> report.md
+          echo "#### Params" >> report.md
+          dvc params diff main --md >> report.md
+
+          echo "## Plots" >> report.md
+          echo "### Class confusions" >> report.md
+          echo '![](./reports/confusion_matrix.png "Confusion Matrix")' >> report.md
+
+-         cml comment create report.md
++         cml comment create --target=pr --update report.md
 ```
 
-Und committen die Änderungen auf unser Repository:
+Nun committen wir die Änderungen auf unser Repository:
 
 ```shell
 git add .
@@ -115,6 +137,9 @@ Nun führen wir nochmal ein Experiment durch:
 1. Unter https://github.com/GITHUB_USER/digits/actions wird wieder ein Workflow ausgeführt.
 1. Ein Link zum Report wieder in den Logs angezeigt. Doch diesmal befindet sich der Report direkt in einem Pull-Request. Mit einem Klick auf den Link gelangt man auf den Pull-Request mit dem Report.
 1. Wir sehen, dass der `f1 score` im Vergleich zum `main` sehr viel schlechter ist. Das Team würde dieses Modell sicherlich nicht integrieren wollen.
+
+Darum erstellen wir ein weiteres Experiment:
+
 1. In der Datei `params.yaml` den Parameter `kernel` auf `linear` ändern und die Datei speichern.
 1. Änderungen pushen mit:
     ```shell
@@ -124,11 +149,14 @@ Nun führen wir nochmal ein Experiment durch:
     ```
 1. Wieder wird ein Worklfow unter https://github.com/GITHUB_USER/digits/actions ausgeführt.
 1. Mit dem Link in den Logs gelangt man wieder zum Pull Request wenn der Workflow ausgeführt wurde.
-1. Je nachdem ob der `f1 score` besser ist, können wir den Pull Request akzeptieren und auf den Branch `exp-kernel-experiments` mergen.
-1. Wir könnten nun weitere Experimente starten lassen und wenn wir ein gutes Modell gefunden haben, könnte der Branch `exp-kernel-experiments` in den `main` reintegriert werden. Wer will, kann dies tun und einen Pull Request für `exp-kernel-experiments` auf `main` erstellen und mergen.
+1. Auch wenn der `f1 score` nicht besser ist, mergen wir diesen Branch zurück auf `exp-kernel-experiments`. **ACHTUNG**: Es ist wichtig, dass **Squash and merge** oder "Rebase and merge" gewählt wird! So wird verhindert, dass erneut ein Build ausgeführt und ein neuer Pull Request erstellt wird. Im folgenden Screenshot ist zu sehen, was gewählt werden muss:   
+![](screenshots/github_squash-and-merge.png)
+
+1. Wir könnten nun weitere Experimente starten lassen und wenn wir ein gutes Modell gefunden haben, könnte der Branch `exp-kernel-experiments` in den `main` reintegriert werden (auch hier wieder **Squash and merge** benutzen!). Wer will, kann dies tun und einen Pull Request für `exp-kernel-experiments` auf `main` erstellen und mergen.
 1. Lokal wechseln wir wieder zurück auf den `main`:
     ```shell
     git checkout main
+    git pull
     dvc pull
     ```
 
