@@ -17,6 +17,7 @@
 3. [Daten und Modell versionieren](labs/030_lab_data_versioning.md)
 4. [Metriken und Experimente](labs/040_lab_metrics.md)
 5. [GitHub Actions](labs/050_lab_github_actions.md)
+6. [Modell manuell testen](labs/060_lab_deploy_model.md)
 
 ### Weitere Labs
 
