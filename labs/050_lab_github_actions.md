@@ -162,4 +162,5 @@ Darum erstellen wir ein weiteres Experiment:
 
 ---
 
-[← Metriken und Experimente](040_lab_metrics.md) | [STARTSEITE →](../README.md)
+[← Metriken und Experimente](040_lab_metrics.md) | [STARTSEITE](../README.md) |
+[Modell manuell testen →](060_lab_deploy_model.md)
