@@ -27,23 +27,11 @@ Aus deinem neu erstellten Repository kannst du nun GitHub-Codespace öffnen.
 1. Kontrolliere ob du dich auf deinem eigenen Repository befindest: https://github.com/<GIT_USER>/digits
 1. Unter "Code -> Codespaces" kannst du nun mit "Create codespace on main" die Umgebung starten:   
 ![GitHub start codespace](screenshots/github_repo_start_codespace.png)
+1. Nach einiger Zeit öffnet sich die VSCode Umgebung.   
+**ACHTUNG**: Es ist wichtig zu warten, bis im unteren Bereich die folgende Meldung erscheint und sich diese dann auch von selbst schliesst (die Installation kann eine Weile dauern):
+![Github Codespace post create command](screenshots/github-codespaces-postCreateCommand.png)
 
 Weitere Informationen zu Codespace: [Creating a codespace for a repository](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository)
-
-### Python konfigurieren
-
-Bei einer lokalen Installation sollten wir eine virtuelle Python Umgebung nutzen, doch wenn wir mit GiHub-Codespace arbeiten, ist dies nicht nötig.
-
-Doch müssen in GitHub-Codespace trotzdem noch ein paar Konfigurationen für Python vorgenommen werden. Alle Abhängigkeiten aus dem `requirements.txt` werden zwar automatisch installiert, doch wurden noch nicht alle Pfade korrekt gesetzt.
-
-Dazu im Terminal die folgenden Befehle ausführen:
-
-```shell
-echo "export PATH=`python -m site --user-site`/bin:\$PATH" >> ~/.bashrc
-echo "export PYTHONPATH=$CODESPACE_VSCODE_FOLDER" >> ~/.bashrc
-```
-
-**Damit die Konfiguration aktiv wird, muss ein neues Terminal geöffnet werden.**
 
 ---
 
