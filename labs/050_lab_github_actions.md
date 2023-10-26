@@ -88,10 +88,6 @@ Oben haben wir gesehen, dass ein Commit mit einem Report erstellt wird. Es ist m
 Dazu machen wir im `.github/workflows/cml.yaml` folgende Änderungen:
 
 ```diff
--         cml comment create report.md
-+         cml pr create .
-+         cml comment update report.md
-
         run: |
 +         cml pr --skip-ci .
 
