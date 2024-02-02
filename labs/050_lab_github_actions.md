@@ -69,6 +69,10 @@ jobs:
 
 ## Experiment mit Kernel `poly`
 
+1. Einen neuen Branch erstellen mit:
+    ```shell
+    git checkout -b exp-kernel-poly
+    ```
 1. In der Datei `params.yaml` den Parameter `kernel` auf `poly` ändern und die Datei speichern.
 1. Pipeline ausühren
     ```shell
@@ -78,13 +82,19 @@ jobs:
     ```shell
     git add .
     git commit -m "Experiment with kernel poly."
-    git push
+    git push --set-upstream origin exp-kernel-poly
     dvc push
     ```
 1. Unter https://github.com/GITHUB_USER/digits/actions wird nun ein Workflow ausgeführt.
 1. Ein Link zum Report wird in den Logs angezeigt:   
     ![](screenshots/github-actions-cml-report-link.png)
 1. Mit einem Klick auf den Link gelangt man auf den Commit. Ganz unten ist ein Kommentar mit dem Report zu sehen.
+1. Lokal wechseln wir wieder zurück auf den `main`:
+    ```shell
+    git checkout main
+    git pull
+    dvc pull
+    ```
 
 ## Pull Request
 
