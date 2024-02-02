@@ -138,10 +138,11 @@ dvc exp remove --all
 dvc exp clean
 ```
 
-Auch Änderungen im Git-Workspace sollten bereinigt werden damit dieser wieder sauber ist.
+Auch Änderungen im Git-Workspace und den Daten sollten bereinigt werden damit diese wieder sauber sind.
 
 ```shell
 git checkout .
+dvc pull
 ```
 
 ## Zusätzliche Dokumentation
