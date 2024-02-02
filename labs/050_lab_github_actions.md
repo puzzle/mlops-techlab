@@ -25,6 +25,7 @@ on:
       - "src/**"
       - "params.yaml"
       - "dvc.*"
+      - ".github/workflows/cml.yaml"
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
@@ -34,22 +35,29 @@ jobs:
           node-version: 16
       - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v3
-      - name: Train model
+
+      - name: Install python packages
         run: |
           cat requirements.txt | grep -v -e jupyter > ci_requirements.txt
           pip install -r ci_requirements.txt
+          rm ci_requirements.txt
+
+      - name: Run DVC pipeline
+        run: |
           PYTHONPATH=$PWD dvc repro
+      
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "## Metrics" >> report.md
+          cml ci --fetch-depth=0
 
-          git fetch --prune
+          echo "## Metrics" >> report.md
           dvc metrics show --md >> report.md
 
           echo "### Diff" >> report.md
-          dvc metrics diff main --md >> report.md
+          dvc metrics diff main --all --md >> report.md
+
           echo "#### Params" >> report.md
           dvc params diff main --md >> report.md
 
@@ -102,17 +110,21 @@ Oben haben wir gesehen, dass ein Commit mit einem Report erstellt wird. Es ist m
 
 Dazu machen wir im `.github/workflows/cml.yaml` folgende Änderungen:
 
-```diff
+```diff    
+      - name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-+         cml pr --skip-ci .
+          cml ci --fetch-depth=0
+
++         cml pr create .
 
           echo "## Metrics" >> report.md
-
-          git fetch --prune
           dvc metrics show --md >> report.md
 
           echo "### Diff" >> report.md
-          dvc metrics diff main --md >> report.md
+          dvc metrics diff main --all --md >> report.md
+
           echo "#### Params" >> report.md
           dvc params diff main --md >> report.md
 
@@ -120,8 +132,7 @@ Dazu machen wir im `.github/workflows/cml.yaml` folgende Änderungen:
           echo "### Class confusions" >> report.md
           echo '![](./reports/confusion_matrix.png "Confusion Matrix")' >> report.md
 
--         cml comment create report.md
-+         cml comment create --target=pr --update report.md
+          cml comment create report.md
 ```
 
 Nun committen wir die Änderungen auf unser Repository:
@@ -173,7 +184,7 @@ Darum erstellen wir ein weiteres Experiment:
 1. Auch wenn der `f1 score` nicht besser ist, mergen wir diesen Branch zurück auf `exp-kernel-experiments`. **ACHTUNG**: Es ist wichtig, dass **Squash and merge** oder "Rebase and merge" gewählt wird! So wird verhindert, dass erneut ein Build ausgeführt und ein neuer Pull Request erstellt wird. Im folgenden Screenshot ist zu sehen, was gewählt werden muss:   
 ![](screenshots/github_squash-and-merge.png)
 
-1. Wir könnten nun weitere Experimente starten lassen und wenn wir ein gutes Modell gefunden haben, könnte der Branch `exp-kernel-experiments` in den `main` reintegriert werden (auch hier wieder **Squash and merge** benutzen!). Wer will, kann dies tun und einen Pull Request für `exp-kernel-experiments` auf `main` erstellen und mergen.
+1. Wir könnten nun weitere Experimente starten und wenn wir ein gutes Modell gefunden haben, könnte der Branch `exp-kernel-experiments` in den `main` reintegriert werden (auch hier wieder **Squash and merge** benutzen!). Wer will, kann dies tun und einen Pull Request für `exp-kernel-experiments` auf `main` erstellen und mergen.
 1. Lokal wechseln wir wieder zurück auf den `main`:
     ```shell
     git checkout main
