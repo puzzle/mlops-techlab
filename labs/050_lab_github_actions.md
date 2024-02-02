@@ -70,11 +70,16 @@ jobs:
 ## Experiment mit Kernel `poly`
 
 1. In der Datei `params.yaml` den Parameter `kernel` auf `poly` ändern und die Datei speichern.
+1. Pipeline ausühren
+    ```shell
+    dvc repro
+    ```
 1. Änderungen pushen mit:
     ```shell
     git add .
     git commit -m "Experiment with kernel poly."
     git push
+    dvc push
     ```
 1. Unter https://github.com/GITHUB_USER/digits/actions wird nun ein Workflow ausgeführt.
 1. Ein Link zum Report wird in den Logs angezeigt:   
@@ -124,11 +129,16 @@ Nun führen wir nochmal ein Experiment durch:
     git checkout -b exp-kernel-experiments
     ```
 1. In der Datei `params.yaml` den Parameter `kernel` auf `sigmoid` ändern und die Datei speichern.
+1. Pipeline ausführen
+    ```shell
+    dvc repro
+    ```
 1. Änderungen pushen mit:
     ```shell
     git add .
     git commit -m "Experiment with kernel sigmoid."
     git push --set-upstream origin exp-kernel-experiments
+    dvc push
     ```
 1. Unter https://github.com/GITHUB_USER/digits/actions wird wieder ein Workflow ausgeführt.
 1. Ein Link zum Report wieder in den Logs angezeigt. Doch diesmal befindet sich der Report direkt in einem Pull-Request. Mit einem Klick auf den Link gelangt man auf den Pull-Request mit dem Report.
@@ -137,11 +147,16 @@ Nun führen wir nochmal ein Experiment durch:
 Darum erstellen wir ein weiteres Experiment:
 
 1. In der Datei `params.yaml` den Parameter `kernel` auf `linear` ändern und die Datei speichern.
+1. Pipeline ausführen:
+    ```shell
+    dvc repro
+    ``` 
 1. Änderungen pushen mit:
     ```shell
     git add .
     git commit -m "Experiment with kernel linear."
     git push
+    dvc push
     ```
 1. Wieder wird ein Worklfow unter https://github.com/GITHUB_USER/digits/actions ausgeführt.
 1. Mit dem Link in den Logs gelangt man wieder zum Pull Request wenn der Workflow ausgeführt wurde.
