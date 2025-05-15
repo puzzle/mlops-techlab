@@ -16,7 +16,7 @@ Um das Modell auch einmal manuell testen zu können, erstellen wir eine kleine A
 
 ## Applikation erstellen und starten
 
-1. Die Datei `src/app.py` erstellen und den Code aus https://github.com/iimsand/mlops-techlab-digits-template/blob/exercise/060_lab_deploy_model/src/app.py kopieren.
+1. Die Datei `src/app.py` erstellen und den Code aus https://github.com/puzzle/mlops-techlab-digits-template/blob/exercise/060_lab_deploy_model/src/app.py kopieren.
 1. Die Datei speichern.
 1. Applikation starten mit:
     ```shell

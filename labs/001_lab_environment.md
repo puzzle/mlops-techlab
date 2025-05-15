@@ -11,7 +11,7 @@ Wer will, kann die Labs aber auch lokal durchführen. Eine detaillierte Installa
 
 ## GitHub-Repository
 
-Es existiert ein Template Repository unter https://github.com/iimsand/mlops-techlab-digits-template. Dieses Repository dient als Startpunkt für dein eigenes Repository und enthält auch Lösungen zu jedem Lab, falls du einmal nicht weiterkommen solltest, kannst du die Dateien vom entsprechenden Branch kopieren. Das Repository ist schreibgeschützt und du musst dein eigenes Repository erstellen.
+Es existiert ein Template Repository unter https://github.com/puzzle/mlops-techlab-digits-template. Dieses Repository dient als Startpunkt für dein eigenes Repository und enthält auch Lösungen zu jedem Lab, falls du einmal nicht weiterkommen solltest, kannst du die Dateien vom entsprechenden Branch kopieren. Das Repository ist schreibgeschützt und du musst dein eigenes Repository erstellen.
 
 Dein Repository kannst du wie folgt erstellen:
 

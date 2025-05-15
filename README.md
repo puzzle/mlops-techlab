@@ -32,7 +32,7 @@
 
 ## Links
 
-* [Template-Repository](https://github.com/iimsand/mlops-techlab-digits-template)
+* [Template-Repository](https://github.com/puzzle/mlops-techlab-digits-template)
 
 ---
 
